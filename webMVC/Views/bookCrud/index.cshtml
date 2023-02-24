@@ -1,0 +1,54 @@
+﻿@model IEnumerable<webMVC.Models.book>
+
+@{
+    ViewBag.title = "index";
+}
+
+<h2>CRUD BASIC</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.publish_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th></th>
+    </tr>
+@foreach (var item in Model)
+{
+    using (Html.BeginForm("Delete", "bookCrud", new { id = item.book_id }))
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.publish_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.book_id }) |
+            @Html.ActionLink("Update", "Update", new { id = item.book_id }) |
+            <input type="submit" value="Delete" />  
+        </td>
+    </tr>
+    }
+}
+
+</table>
